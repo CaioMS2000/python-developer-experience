@@ -1,0 +1,12 @@
+repos:
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.3.7  # Use a versão mais recente do Ruff!
+    hooks:
+      - id: ruff
+        args: ["--fix"]  # Optional: Auto-correct fixable errors
+      - id: ruff-format
+
+  - repo: https://github.com/DetachHead/basedpyright-pre-commit-mirror
+    rev: v1.13.0 # or whatever the latest version is at the time
+    hooks:
+        - id: basedpyright

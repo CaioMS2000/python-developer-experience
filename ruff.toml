@@ -1,0 +1,2 @@
+exclude = ["*.pyi"]
+line-length = 150
