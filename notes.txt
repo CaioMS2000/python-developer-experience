@@ -1,0 +1,39 @@
+1. map
+Propósito:
+O método map é usado para transformar o valor contido em um Either, mas apenas se for um sucesso (Right). Se o Either for um erro (Left), o método map simplesmente retorna o próprio erro sem aplicar a transformação.
+
+Quando usar:
+Quando você quer aplicar uma transformação ao valor de sucesso, mas não quer lidar com o erro.
+
+Quando você quer encadear operações que dependem do valor de sucesso, mas não quer se preocupar com a verificação de erros a cada passo.
+
+Exemplo:
+Suponha que você tenha uma função que divide dois números e retorna um Either[float, ZeroDivisionError]. Você pode usar map para transformar o resultado da divisão (se for bem-sucedido) em outro valor, como multiplicá-lo por 2
+
+
+
+2. bind (também conhecido como flatMap ou >>= em outras linguagens)
+Propósito:
+O método bind é usado para encadear operações que retornam um Either. Ele é semelhante ao map, mas a função passada para bind retorna um novo Either, em vez de um valor simples. Isso permite encadear operações que podem falhar.
+
+Quando usar:
+Quando você quer encadear operações que podem falhar (ou seja, operações que retornam um Either).
+
+Quando você precisa passar o valor de sucesso para uma função que também pode retornar um erro.
+
+Exemplo:
+Suponha que você tenha uma função que divide dois números e outra função que calcula a raiz quadrada de um número (que pode falhar se o número for negativo). Você pode usar bind para encadear essas operações
+
+
+Quando usar map vs bind?
+Use map quando:
+
+Você quer aplicar uma transformação ao valor de sucesso, mas a transformação não pode falhar (ou seja, ela retorna um valor simples, não um Either).
+
+Exemplo: Multiplicar o resultado de uma divisão por 2.
+
+Use bind quando:
+
+Você quer encadear operações que podem falhar (ou seja, elas retornam um Either).
+
+Exemplo: Dividir dois números e, em seguida, calcular a raiz quadrada do resultado (ambas as operações podem falhar).
