@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TypeVar, Generic, Callable, TypeAlias, cast, override
+from typing import TypeVar, Generic, Callable, TypeAlias, override
 from abc import ABC, abstractmethod
 
 # Definindo tipos genéricos
@@ -53,11 +53,13 @@ class Left(Either[L, R]):
 
     @override
     def map(self, func: Callable[[R], T]) -> Result[L, T]:
-        return self  # Left não é afetado por map
+        # Retorna um novo Left[L, T] com o mesmo valor
+        return Left(self.value)
 
     @override
     def bind(self, func: Callable[[R], Result[L, T]]) -> Result[L, T]:
-        return self  # Left não é afetado por bind
+        # Left não é afetado por bind
+        return Left[L, T](self.value)
 
     @override
     def get_or_else(self, default: R) -> R:

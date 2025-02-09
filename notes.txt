@@ -37,3 +37,5 @@ Use bind quando:
 Você quer encadear operações que podem falhar (ou seja, elas retornam um Either).
 
 Exemplo: Dividir dois números e, em seguida, calcular a raiz quadrada do resultado (ambas as operações podem falhar).
+
+eithers validados pelo linter: 4, 7 e 9
