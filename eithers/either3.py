@@ -1,9 +1,10 @@
 from typing import Generic, TypeVar
 
 # Definindo tipos genéricos para o valor de sucesso e o erro
-T = TypeVar('T')  # Tipo do valor de sucesso
-U = TypeVar('U')  # Tipo do valor transformado (usado em map e bind)
-E = TypeVar('E', bound=Exception)  # Tipo do erro (deve ser uma exceção)
+T = TypeVar("T")  # Tipo do valor de sucesso
+U = TypeVar("U")  # Tipo do valor transformado (usado em map e bind)
+E = TypeVar("E", bound=Exception)  # Tipo do erro (deve ser uma exceção)
+
 
 class Either(Generic[E, T]):
     """
@@ -35,11 +36,13 @@ class Either(Generic[E, T]):
         status = "Right" if self.is_right() else "Left"
         return f"{status}({self._value})"
 
+
 class Right(Either[E, T]):
     """Classe que representa um sucesso (Right)."""
 
     def __init__(self, value: T):
         super().__init__(value, is_right=True)
+
 
 class Left(Either[E, T]):
     """Classe que representa um erro (Left)."""
@@ -47,12 +50,14 @@ class Left(Either[E, T]):
     def __init__(self, error: E):
         super().__init__(error, is_right=False)
 
+
 # Exemplo de uso
 def divide(a: float, b: float) -> Either[ZeroDivisionError, float]:
     """Divide dois números, retornando um Either[ZeroDivisionError, float]."""
     if b == 0:
         return Left(ZeroDivisionError("Division by zero"))
     return Right(a / b)
+
 
 # Testando a função divide
 result = divide(10, 2)

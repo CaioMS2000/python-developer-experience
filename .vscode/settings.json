@@ -8,11 +8,12 @@
         "titleBar.activeForeground": "#FDFBEE"
     },
     "ruff.enable": true,
+    "ruff.lint.enable": true,
     "editor.defaultFormatter": "charliermarsh.ruff",
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.organizeImports": "always",
-            "source.fixAll.ruff": "always",
+            "source.fixAll.ruff": "explicit",
         }
     },
     "editor.formatOnSave": true,

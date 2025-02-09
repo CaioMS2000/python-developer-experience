@@ -10,6 +10,7 @@ T = TypeVar("T")  # Tipo genérico para transformações
 # Alias para Either
 Result: TypeAlias = "Left[L, R] | Right[L, R]"
 
+
 # Classe base abstrata para Either
 class Either(Generic[L, R], ABC):
     @property
@@ -33,6 +34,7 @@ class Either(Generic[L, R], ABC):
     @abstractmethod
     def get_or_else(self, default: R) -> R:
         pass
+
 
 # Classe Left
 class Left(Either[L, R]):
@@ -65,6 +67,7 @@ class Left(Either[L, R]):
     def get_or_else(self, default: R) -> R:
         return default  # Retorna o valor padrão
 
+
 # Classe Right
 class Right(Either[L, R]):
     value: R
@@ -95,9 +98,11 @@ class Right(Either[L, R]):
     def get_or_else(self, default: R) -> R:
         return self.value  # Retorna o valor interno
 
+
 # Funções auxiliares
 def left(value: L) -> Result[L, object]:
     return Left(value)
+
 
 def right(value: R) -> Result[object, R]:
     return Right(value)

@@ -1,9 +1,10 @@
 from typing import Generic, TypeVar, Callable
 
 # Definindo tipos genéricos para o valor de sucesso e o erro
-T = TypeVar('T')  # Tipo do valor de sucesso
-U = TypeVar('U')  # Tipo do valor transformado (usado em map e bind)
-E = TypeVar('E', bound=Exception)  # Tipo do erro (deve ser uma exceção)
+T = TypeVar("T")  # Tipo do valor de sucesso
+U = TypeVar("U")  # Tipo do valor transformado (usado em map e bind)
+E = TypeVar("E", bound=Exception)  # Tipo do erro (deve ser uma exceção)
+
 
 class Either(Generic[T, E]):
     """
@@ -22,7 +23,7 @@ class Either(Generic[T, E]):
         """Retorna True se o resultado for um erro (Left)."""
         return not self._is_right
 
-    def map(self, func: Callable[[T], U]) -> 'Either[U, E]':
+    def map(self, func: Callable[[T], U]) -> "Either[U, E]":
         """
         Aplica a função `func` ao valor contido se for um sucesso (Right).
         Caso contrário, retorna o próprio erro (Left).
@@ -31,7 +32,7 @@ class Either(Generic[T, E]):
             return Right(func(self._value))  # self._value é do tipo T
         return self  # self é Left[E]
 
-    def bind(self, func: Callable[[T], 'Either[U, E]']) -> 'Either[U, E]':
+    def bind(self, func: Callable[[T], "Either[U, E]"]) -> "Either[U, E]":
         """
         Aplica a função `func` ao valor contido se for um sucesso (Right).
         Caso contrário, retorna o próprio erro (Left).
@@ -51,11 +52,13 @@ class Either(Generic[T, E]):
         status = "Right" if self.is_right() else "Left"
         return f"{status}({self._value})"
 
+
 class Right(Either[T, E]):
     """Classe que representa um sucesso (Right)."""
 
     def __init__(self, value: T):
         super().__init__(value, is_right=True)
+
 
 class Left(Either[T, E]):
     """Classe que representa um erro (Left)."""
@@ -63,12 +66,14 @@ class Left(Either[T, E]):
     def __init__(self, error: E):
         super().__init__(error, is_right=False)
 
+
 # Exemplo de uso
 def divide(a: float, b: float) -> Either[float, ZeroDivisionError]:
     """Divide dois números, retornando um Either[float, ZeroDivisionError]."""
     if b == 0:
         return Left(ZeroDivisionError("Division by zero"))
     return Right(a / b)
+
 
 # Testando a função divide
 result = divide(10, 2)
