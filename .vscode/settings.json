@@ -7,15 +7,12 @@
         "titleBar.activeBackground": "#4B4008",
         "titleBar.activeForeground": "#FDFBEE"
     },
-    "ruff.enable": true,
-    "ruff.lint.enable": true,
     "editor.defaultFormatter": "charliermarsh.ruff",
     "[python]": {
         "editor.codeActionsOnSave": {
-            "source.organizeImports": "always",
+            "source.organizeImports": "explicit",
             "source.fixAll.ruff": "explicit",
         }
     },
     "editor.formatOnSave": true,
-    "python.languageServer": "None",
 }
